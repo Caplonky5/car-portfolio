@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Car Portfolio by Shiftautography
 
-## Getting Started
+A Next.js 14 automotive photography portfolio with:
+- Session-based photo galleries
+- Immich API integration for image storage
+- Turso (SQLite) database for session metadata
+- Admin dashboard for content management
+- SEO-optimized pages with Open Graph tags
+- Responsive design with lightbox gallery
 
-First, run the development server:
+## 🚀 Environment Variables
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Create a `.env.local` file with:
+
+```env
+ADMIN_PASSWORD=your_secure_password_here
+IMMICH_BASE_URL=http://your-immich-instance  # e.g., http://localhost:3003
+IMMICH_API_KEY=your_immich_api_key
+TURSO_DATABASE_URL=your_turso_database_url
+TURSO_AUTH_TOKEN=your_turso_auth_token
+RESEND_API_KEY=re_your_resend_api_key      # For contact form emails
+CONTACT_EMAIL_TO=your@email.com            # Where contact forms are sent
+INSTAGRAM_URL=https://instagram.com/yourprofile
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Setup Instructions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Set up Turso database**:
+   - Create a new Turso DB at [turso.tech](https://turso.tech)
+   - Run migrations (if needed) using your SQLite tool of choice
 
-## Learn More
+3. **Configure Immich**:
+   - Self-host Immich or use their hosted service
+   - Create an API key in Immich settings
 
-To learn more about Next.js, take a look at the following resources:
+4. **Start development**:
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ☁️ Deploy to Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Push to GitHub/GitLab** and connect to Vercel
+2. **Set Environment Variables** in Vercel dashboard:
+   - Add all variables from `.env.local`
+3. **Add Turso Database Integration**:
+   - In Vercel, go to project settings > Integrations
+   - Connect your Turso database
+   - Enable "Preview Databases" for PRs (optional)
+4. **Deploy**:
+   - Vercel will automatically build and deploy on push
 
-## Deploy on Vercel
+## ✨ Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **SEO Metadata**: Dynamic Open Graph tags per session
+- **Admin Dashboard**: Password-protected editing of sessions
+- **Responsive Gallery**: Lightbox with arrow-key navigation
+- **Contact Form**: Emails sent via Resend API
+- **Image Optimization**: Proxy through Next.js with immutable caching
+- **Empty States**: Graceful handling of no sessions/photos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Project Structure
+
+```
+app/
+  admin/           # Admin dashboard
+  api/             # API routes
+  sessions/[slug]/ # Session gallery pages
+  page.tsx         # Homepage
+  layout.tsx       # Root layout
+lib/
+  db.ts            # Turso database client
+  immich.ts        # Immich API client
+  grouping.ts      # Session logic
+components/
+  SessionCard.tsx  # Homepage cards
+  Lightbox.tsx     # Image lightbox
+  Layout.tsx       # Main layout with nav/footer
+```
