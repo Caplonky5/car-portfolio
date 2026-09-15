@@ -1,0 +1,1 @@
+export async function POST(req: Request) {{ // TODO: process contact form\n return new Response('Contact received'); }}

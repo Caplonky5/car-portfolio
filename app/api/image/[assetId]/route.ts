@@ -1,0 +1,1 @@
+export async function GET(req: Request, { params }: {{ params: {{ assetId: string }} }}) {{ // TODO: fetch image\n return new Response(Image ); }}

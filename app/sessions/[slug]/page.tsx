@@ -1,0 +1,1 @@
+export default function SessionPage({ params }: {{ params: {{ slug: string }} }}) {{ return (<div>Session {params.slug}</div>); }}

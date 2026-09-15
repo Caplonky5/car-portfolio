@@ -1,0 +1,1 @@
+export async function POST(req: Request) {{ // TODO: handle webhook\n return new Response('Webhook received'); }}
